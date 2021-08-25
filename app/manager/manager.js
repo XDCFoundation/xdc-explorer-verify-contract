@@ -20,7 +20,8 @@ class BLManager {
             return output
           }
         });*/
-        console.log('hello===>',data)
+        let res = JSON.parse(data)
+        console.log('hello===>',res.address)
         return data.body;
     }
 }
