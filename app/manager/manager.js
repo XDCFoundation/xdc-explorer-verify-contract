@@ -20,8 +20,8 @@ class BLManager {
             return output
           }
         });*/
-        console.log('hello===>',data.verifycode)
-        return data.verifycode;
+        console.log('hello===>',data.body)
+        return data.body;
     }
 }
 
