@@ -3,8 +3,22 @@ var solc = require('solc');
 
 class BLManager {
     async VerifyContract(data) {
-    	let optimise = true
-        var output = solc.compile(data.code, optimise);
+    	let optimise = false
+    	let version = '0.4.24'
+    	var soliCompCache = {};
+        //var output = solc.compile(data.code, optimise);
+        solc.loadRemoteVersion(version, function (err, solcV) {
+          console.log("on loadRemoteVersion:" + version);
+          if (err) {
+            return err
+          }
+          else {
+            targetSolc = solcV;
+            soliCompCache[version] = targetSolc;//compiler cache
+            var output = targetSolc.compile(data.code, optimise);
+            return output
+          }
+        });
         console.log('hello===>',data.code)
         return output;
     }
