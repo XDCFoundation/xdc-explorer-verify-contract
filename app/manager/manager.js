@@ -8,17 +8,10 @@ class BLManager {
     	var output = null
     	let res = JSON.parse(data)
     	// getting the development snapshot
-		solc.loadRemoteVersion('latest', function(err, solcSnapshot) {
-		  if (err) {
-		    // An error was encountered, display and quit
-		  } else {
-		  	console.log('hi===>',solcSnapshot)
-		    // NOTE: Use `solcSnapshot` here with the same interface `solc` has
-		  }
-		});
+		output = JSON.parse(solc.compile(JSON.stringify(res.verifycode)));
         
         console.log('hello===>',res.verifycode)
-        return linkReferences;
+        return output;
     }
 }
 
