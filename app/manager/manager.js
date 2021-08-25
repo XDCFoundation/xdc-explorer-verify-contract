@@ -4,9 +4,9 @@ var solc = require('solc');
 class BLManager {
     async VerifyContract(data) {
     	let optimise = true
-        //var output = solc.compile(data.code, optimise);
-        console.log('hello===>',data)
-        return data.code;
+        var output = solc.compile(data.code, optimise);
+        console.log('hello===>',data.code)
+        return output;
     }
 }
 
