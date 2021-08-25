@@ -10,11 +10,9 @@ const { httpConstants, apiSuccessMessage, apiFailureMessage, } = require("../com
 class Manger {
     async getVerifyContract(req) {
         lhtLog("Manager:getVerifyContract", "getVerifyContract started", Config.IS_CONSOLE_LOG, "");
-        let parsedRequest = JSON.parse(req)
-        let filter = parsedRequest.filter;
-        let data = parsedRequest.data;
+        
         let [error, response] = await parseResponse(
-            new BlManager().VerifyContract(data)
+            new BlManager().VerifyContract(req)
         );
         if (error) {
             lhtLog("Manager:getVerifyContract", "getVerifyContract end", error, "", "ERROR");
