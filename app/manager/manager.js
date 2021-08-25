@@ -8,7 +8,7 @@ class BLManager {
     	var soliCompCache = {};
     	var output = null
         //var output = solc.compile(data.code, optimise);
-        solc.loadRemoteVersion(version, function (err, solcV) {
+       /* solc.loadRemoteVersion(version, function (err, solcV) {
           console.log("on loadRemoteVersion:" + version);
           if (err) {
             return err
@@ -19,9 +19,9 @@ class BLManager {
              output = targetSolc.compile(data.code, optimise);
             return output
           }
-        });
-        console.log('hello===>',data.code)
-        return solc;
+        });*/
+        console.log('hello===>',data)
+        return data;
     }
 }
 
