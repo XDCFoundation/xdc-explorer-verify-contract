@@ -10,6 +10,7 @@ class BLManager {
     	var targetSolc = soliCompCache[version];
     	// getting the development snapshot
     	solc.loadRemoteVersion(version, function (err, solcV) {
+    		console.log(solcV)
           console.log("on loadRemoteVersion:" + version);
           if (err) {
             console.error(err);
