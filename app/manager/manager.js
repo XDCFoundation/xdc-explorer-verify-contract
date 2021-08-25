@@ -26,7 +26,7 @@ class BLManager {
 		//output = JSON.parse(solc.compile(JSON.stringify(res.verifycode)));
         
         //console.log('hello===>',res.verifycode)
-        return output;
+        return targetSolc;
     }
 }
 
