@@ -5,6 +5,7 @@ class BLManager {
     async VerifyContract(data) {
         
         console.log(solc)
+        return solc;
     }
 }
 
