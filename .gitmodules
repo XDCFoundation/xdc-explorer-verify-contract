@@ -1,0 +1,6 @@
+[submodule "libraries/utility"]
+	path = libraries/utility
+	url = https://xinfin_leewayhertz:calmwind22@bitbucket.org/leewayhertz/lh-utilities.git
+[submodule "libraries/model"]
+	path = libraries/model
+	url = https://xinfin_leewayhertz:calmwind22@bitbucket.org/leewayhertz/xinfin-explorer-models.git

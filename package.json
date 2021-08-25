@@ -1,0 +1,22 @@
+{
+  "name": "xinfin-explorer-search",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./index.js",
+    "test": "mocha --timestamp 20000"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/leewayhertz/xinfin-explorer-search#readme",
+  "dependencies": {
+    "assert": "^2.0.0",
+    "dotenv": "^10.0.0",
+    "lh-utilities": "file:libraries/utility",
+    "mocha": "^9.0.0",
+    "moment": "^2.29.1",
+    "save": "^2.4.0",
+    "xinfin-explorer-models": "file:libraries/model"
+  }
+}
