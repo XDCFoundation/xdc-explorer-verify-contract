@@ -1,6 +1,5 @@
 //const { lhtLog } = require("lh-utilities/utilityMethods");
 var solc = require('solc');
-var linker = require('solc/linker');
 class BLManager {
     async VerifyContract(data) {
     	let optimise = false
@@ -8,22 +7,15 @@ class BLManager {
     	var soliCompCache = {};
     	var output = null
     	let res = JSON.parse(data)
-    	var targetSolc = soliCompCache[version];
-        //output = targetSolc.compile(res.verifycode, optimise);
-
-		var linkReferences = linker.findLinkReferences(res.verifycode);
-        /*solc.loadRemoteVersion(version, function (err, solcV) {
-          console.log("on loadRemoteVersion:" + version);
-          if (err) {
-            return err
-          }
-          else {
-            targetSolc = solcV;
-            soliCompCache[version] = targetSolc;//compiler cache
-             output = targetSolc.compile(res.verifycode, optimise);
-           
-          }
-        });*/
+    	// getting the development snapshot
+		solc.loadRemoteVersion('latest', function(err, solcSnapshot) {
+		  if (err) {
+		    // An error was encountered, display and quit
+		  } else {
+		  	console.log('hello===>',solcSnapshot)
+		    // NOTE: Use `solcSnapshot` here with the same interface `solc` has
+		  }
+		});
         
         console.log('hello===>',res.verifycode)
         return linkReferences;
