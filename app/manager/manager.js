@@ -6,6 +6,7 @@ class BLManager {
     	let optimise = false
     	let version = '0.4.24'
     	var soliCompCache = {};
+    	var output = null
         //var output = solc.compile(data.code, optimise);
         solc.loadRemoteVersion(version, function (err, solcV) {
           console.log("on loadRemoteVersion:" + version);
@@ -15,7 +16,7 @@ class BLManager {
           else {
             targetSolc = solcV;
             soliCompCache[version] = targetSolc;//compiler cache
-            var output = targetSolc.compile(data.code, optimise);
+             output = targetSolc.compile(data.code, optimise);
             return output
           }
         });
