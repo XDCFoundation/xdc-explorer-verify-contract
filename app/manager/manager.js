@@ -3,9 +3,10 @@ var solc = require('solc');
 
 class BLManager {
     async VerifyContract(data) {
-        
-        console.log(data)
-        return solc;
+    	let optimise = true
+        var output = targetSolc.compile(data.code, optimise);
+        console.log(output)
+        return output;
     }
 }
 
