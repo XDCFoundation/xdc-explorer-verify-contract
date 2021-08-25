@@ -20,7 +20,7 @@ class BLManager {
             return output
           }
         });*/
-        console.log('hello===>',data)
+        console.log('hello===>',data.code)
         return data;
     }
 }
