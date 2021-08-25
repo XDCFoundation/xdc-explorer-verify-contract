@@ -12,7 +12,7 @@ class BLManager {
 		  if (err) {
 		    // An error was encountered, display and quit
 		  } else {
-		  	console.log('hello===>',solcSnapshot)
+		  	console.log('hi===>',solcSnapshot)
 		    // NOTE: Use `solcSnapshot` here with the same interface `solc` has
 		  }
 		});
