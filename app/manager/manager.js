@@ -21,7 +21,7 @@ class BLManager {
           }
         });
         console.log('hello===>',data.code)
-        return output;
+        return solc;
     }
 }
 
