@@ -6,7 +6,7 @@ class BLManager {
     	let optimise = true
         //var output = solc.compile(data.code, optimise);
         console.log(data)
-        return data;
+        return data.code;
     }
 }
 
