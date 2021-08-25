@@ -8,8 +8,9 @@ class BLManager {
     	var soliCompCache = {};
     	var output = null
     	let res = JSON.parse(data)
-        //var output = solc.compile(res.verifycode, optimise);
-        solc.loadRemoteVersion(version, function (err, solcV) {
+    	var targetSolc = soliCompCache[version];
+        output = targetSolc.compile(res.verifycode, optimise);
+        /*solc.loadRemoteVersion(version, function (err, solcV) {
           console.log("on loadRemoteVersion:" + version);
           if (err) {
             return err
@@ -20,7 +21,7 @@ class BLManager {
              output = targetSolc.compile(res.verifycode, optimise);
            
           }
-        });
+        });*/
         
         console.log('hello===>',res.verifycode)
         return output;
