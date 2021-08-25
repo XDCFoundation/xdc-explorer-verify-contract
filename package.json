@@ -16,6 +16,7 @@
     "lh-utilities": "file:libraries/utility",
     "mocha": "^9.0.0",
     "moment": "^2.29.1",
+    "solc": "^0.4.19",
     "save": "^2.4.0",
     "xinfin-explorer-models": "file:libraries/model"
   }
