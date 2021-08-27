@@ -11,7 +11,7 @@ class BLManager {
     	let res = JSON.parse(data)
     	var targetSolc = soliCompCache[version];
     	try {
-    		const inboxPath = path.resolve(__dirname, 'ABC.sol');
+    		const inboxPath = path.resolve(__dirname, 'contract.sol');
 			const source = fs.readFileSync(inboxPath, 'utf8').toString();
     		console.log('source here===>',inboxPath)
 		} catch (err) {
