@@ -16,30 +16,7 @@ class BLManager {
     		const inboxPath = path.resolve(__dirname, 'mycontract.sol');
 			const source = fs.readFileSync(inboxPath, 'utf8').toString();
 
-			const input = { 
-    			'mycontract.sol': fs.readFileSync(path.resolve(__dirname, 'mycontract.sol'), 'utf8') 
-			}
 
-			const out = solc.compile({sources: input}, 1);
-
-			if(out.errors) {
-			    out.errors.forEach(err => {
-			        console.log(err);
-			    });
-			} else {
-			    /*const bytecode = out.contracts['mycontract.sol:Inbox'].bytecode;
-			    const abi = out.contracts['mycontract.sol:Inbox'].interface;
-			    console.log(`bytecode: ${bytecode}`);
-			    console.log(`abi: ${JSON.stringify(JSON.parse(abi), null, 2)}`);*/
-			    console.log(out)
-			}
-
-
-
-			
-    		
-    		
-    		/*
     		
 		  //const data = fs.writeFileSync(filePath, res.verifycode)
 		  //console.log('file data',data)
@@ -48,7 +25,7 @@ class BLManager {
 		  var input = {
 		    language: 'Solidity',
 		    sources: {
-		        'mycontract.sol': {content : res.verifycode}
+		        'mycontract.sol': {content : source}
 		    },
 		    settings: {
 		        outputSelection: {
@@ -61,12 +38,12 @@ class BLManager {
 		var output = JSON.parse(solc.compile(JSON.stringify(input)))
 		for (var contractName in output.contracts['mycontract.sol']) {
     		console.log(contractName + ': ' + output.contracts['mycontract.sol'][contractName].evm.bytecode.object)
-		}*/
+		}
 
 		} catch (err) {
 		  console.error(err)
 		}
-		//return output;
+		return output;
 
     	// getting the development snapshot
     /*	solc.loadRemoteVersion(version, function (err, solcV) {
