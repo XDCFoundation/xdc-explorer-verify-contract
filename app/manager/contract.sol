@@ -132,7 +132,7 @@ contract ERC20 is IERC20 {​
   /**
    * constructor
    */
-    function ERC20(uint256 _value){​
+    constructor(uint256 _value){​
         _totalSupply = _value;
         _balances[this]= _totalSupply;
         _owner = msg.sender;
