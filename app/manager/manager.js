@@ -17,7 +17,7 @@ class BLManager {
 			const source = fs.readFileSync(inboxPath, 'utf8').toString();
 
 
-    		console.log('source here===>',source)
+    		console.log('source here===>')
 		  //const data = fs.writeFileSync(filePath, res.verifycode)
 		  //console.log('file data',data)
 		  //const contractFile = fs.readFileSync(filePath, 'UTF-8');
