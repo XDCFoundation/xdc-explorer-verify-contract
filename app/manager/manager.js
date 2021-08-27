@@ -15,14 +15,8 @@ class BLManager {
     	try {
     		const inboxPath = path.resolve(__dirname, 'mycontract.sol');
 			const source = fs.readFileSync(inboxPath, 'utf8').toString();
+    		console.log(solc.compile(source, 1));
     		
-    		solc.loadRemoteVersion('v0.4.1+commit.4fc6fc2c', function(err, solcV04){
-			    if (err) {
-			        console.log("Oopsies");
-			    }
-
-			    console.log(solcV04.compile(source, 1));
-			});
     		/*
     		
 		  //const data = fs.writeFileSync(filePath, res.verifycode)
