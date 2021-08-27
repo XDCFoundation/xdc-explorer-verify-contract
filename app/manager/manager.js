@@ -22,7 +22,7 @@ class BLManager {
 		  //console.log('file data',data)
 		  //const contractFile = fs.readFileSync(filePath, 'UTF-8');
 		  //file written successfully
-		  var input = {
+		 /* var input = {
 		    language: 'Solidity',
 		    sources: {
 		        'ABC.sol': {content : source}
@@ -35,7 +35,7 @@ class BLManager {
 		        }
 		    }
 		};
-		/*var output = JSON.parse(solc.compile(JSON.stringify(input)))
+		var output = JSON.parse(solc.compile(JSON.stringify(input)))
 		console.log('output here===>',output)
 		for (var contractName in output.contracts['ABC.sol']) {
     		console.log(contractName + ': ' + output.contracts['ABC.sol'][contractName].evm.bytecode.object)
