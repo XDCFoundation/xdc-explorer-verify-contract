@@ -10,7 +10,7 @@ class BLManager {
     	var output = null
     	let res = JSON.parse(data)
     	var targetSolc = soliCompCache[version];
-    	const filePath = path.resolve(__dirname, 'mycontract.sol');
+    	const filePath = path.join(__dirname, 'mycontract.sol');
 
     	try {
 
