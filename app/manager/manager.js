@@ -10,61 +10,14 @@ class BLManager {
     	var output = null
     	let res = JSON.parse(data)
     	var targetSolc = soliCompCache[version];
-    	//const filePath = path.join(__dirname, 'mycontract.sol');
-
     	try {
     		const inboxPath = path.resolve(__dirname, 'ABC.sol');
 			const source = fs.readFileSync(inboxPath, 'utf8').toString();
-
-
-    		console.log('source here===>')
-		  //const data = fs.writeFileSync(filePath, res.verifycode)
-		  //console.log('file data',data)
-		  //const contractFile = fs.readFileSync(filePath, 'UTF-8');
-		  //file written successfully
-		 /* var input = {
-		    language: 'Solidity',
-		    sources: {
-		        'ABC.sol': {content : source}
-		    },
-		    settings: {
-		        outputSelection: {
-		            '*': {
-		                '*': [ '*' ]
-		            }
-		        }
-		    }
-		};
-		var output = JSON.parse(solc.compile(JSON.stringify(input)))
-		console.log('output here===>',output)
-		for (var contractName in output.contracts['ABC.sol']) {
-    		console.log(contractName + ': ' + output.contracts['ABC.sol'][contractName].evm.bytecode.object)
-		}*/
-
+    		console.log('source here===>',inboxPath)
 		} catch (err) {
 		  console.error(err)
 		}
 		return output;
-
-    	// getting the development snapshot
-    /*	solc.loadRemoteVersion(version, function (err, solcV) {
-    		console.log(solcV)
-          console.log("on loadRemoteVersion:" + version);
-          if (err) {
-            console.error(err);
-            
-          }
-          else {
-            targetSolc = solcV;
-            soliCompCache[version] = targetSolc;//compiler cache
-             output = targetSolc.compile(res.verifycode, optimise);
-            
-          }
-        });
-		//output = JSON.parse(solc.compile(JSON.stringify(res.verifycode)));
-        
-        //console.log('hello===>',res.verifycode)
-        return targetSolc;*/
     }
 }
 
