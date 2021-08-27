@@ -13,27 +13,16 @@ class BLManager {
     	//const filePath = path.join(__dirname, 'mycontract.sol');
 
     	try {
+    		const inboxPath = path.resolve(__dirname, 'contracts', 'mycontract.sol');
+			const source = fs.readFileSync(inboxPath, 'utf8').toString();
     		
-    		
-    		solc.loadRemoteVersion(version, function (err, solcV) {
-          	console.log("on loadRemoteVersion:" + version);
-	         /* if (err) {
-	            console.error(err);
-	            data.valid = false;
-	            data.err = err.toString();
-	            data["verifiedContracts"] = [];
-	            res.write(JSON.stringify(data));
-	            res.end();
-	            return;
-	          }
-	          else {
-	            targetSolc = solcV;
-	            soliCompCache[version] = targetSolc;//compiler cache
-	             output = targetSolc.compile(res.verifycode, optimise);
-	             return output;
-	            //testValidCode(output, data, bytecode, res);
-	          }*/
-        });
+    		solc.loadRemoteVersion('v0.4.1+commit.4fc6fc2c', function(err, solcV04){
+			    if (err) {
+			        console.log("Oopsies");
+			    }
+
+			    console.log(solcV04.compile(source, 1));
+			});
     		/*
     		
 		  //const data = fs.writeFileSync(filePath, res.verifycode)
