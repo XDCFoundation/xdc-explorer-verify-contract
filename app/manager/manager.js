@@ -13,7 +13,24 @@ class BLManager {
     	try {
     		const inboxPath = path.resolve(__dirname, 'contract.sol');
 			const source = fs.readFileSync(inboxPath, 'utf8').toString();
-    		console.log('source here===>',inboxPath)
+
+
+    		solc.loadRemoteVersion(version, function (err, solcV) {
+    		console.log(solcV)
+          	console.log("on loadRemoteVersion:" + version);
+          if (err) {
+            console.error('Error==>',err);
+            
+          }
+          else {
+            targetSolc = solcV;
+            soliCompCache[version] = targetSolc;//compiler cache
+             output = targetSolc.compile(res.verifycode, optimise);
+            console.error('output==>',output);
+          }
+        });
+
+
 		} catch (err) {
 		  console.error(err)
 		}
