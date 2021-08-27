@@ -22,7 +22,7 @@ class BLManager {
 			solc.loadRemoteVersion('v0.4.24+commit.e67f0147', function (err, solcV) {
 				console.log('@@@@@===',solcV)
 			});
-			const out = solc.compile({sources: input}, 1);
+			/*const out = solc.compile({sources: input}, 1);
 
 			if(out.errors) {
 			    out.errors.forEach(err => {
@@ -35,7 +35,7 @@ class BLManager {
 			    console.log(`abi: ${JSON.stringify(JSON.parse(abi), null, 2)}`);
 			}
 
-
+			*/
 
 			
     		
