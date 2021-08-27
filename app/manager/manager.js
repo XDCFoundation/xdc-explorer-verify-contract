@@ -31,6 +31,7 @@ class BLManager {
 			    }
 			  }
 			};
+			console.log('====>>>>>>>',solc.compile(JSON.stringify(input)))
 			var output = JSON.parse(solc.compile(JSON.stringify(input)));
 			for (var contractName in output.contracts['test.sol']) {
 			  console.log(
