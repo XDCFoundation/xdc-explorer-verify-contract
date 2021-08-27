@@ -10,11 +10,42 @@ class BLManager {
     	var output = null
     	let res = JSON.parse(data)
     	var targetSolc = soliCompCache[version];
-    	const filePath = path.join(__dirname, 'mycontract.sol');
+    	//const filePath = path.join(__dirname, 'mycontract.sol');
 
     	try {
+    		var input = {
+		    language: 'Solidity',
+		    sources: {
+		        'mycontract.sol': {content : res.verifycode}
+		    },
+		    settings: {
+		        outputSelection: {
+		            '*': {
+		                '*': [ '*' ]
+		            }
+		        }
+		    }
+		};
     		console.log(filePath);
-
+    		solc.loadRemoteVersion(version, function (err, solcV) {
+          	console.log("on loadRemoteVersion:" + version);
+	          if (err) {
+	            console.error(err);
+	            data.valid = false;
+	            data.err = err.toString();
+	            data["verifiedContracts"] = [];
+	            res.write(JSON.stringify(data));
+	            res.end();
+	            return;
+	          }
+	          else {
+	            targetSolc = solcV;
+	            soliCompCache[version] = targetSolc;//compiler cache
+	             output = targetSolc.compile(input, optimise);
+	            //testValidCode(output, data, bytecode, res);
+	          }
+        });
+    		/*
     		
 		  //const data = fs.writeFileSync(filePath, res.verifycode)
 		  //console.log('file data',data)
@@ -36,7 +67,7 @@ class BLManager {
 		var output = JSON.parse(solc.compile(JSON.stringify(input)))
 		for (var contractName in output.contracts['mycontract.sol']) {
     		console.log(contractName + ': ' + output.contracts['mycontract.sol'][contractName].evm.bytecode.object)
-		}
+		}*/
 
 		} catch (err) {
 		  console.error(err)
