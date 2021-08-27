@@ -19,6 +19,9 @@ class BLManager {
 			const input = { 
     			'mycontract.sol': fs.readFileSync(path.resolve(__dirname, 'mycontract.sol'), 'utf8') 
 			}
+			solc.loadRemoteVersion(version, function (err, solcV) {
+				console.log('@@@@@===',solcV)
+			});
 			const out = solc.compile({sources: input}, 1);
 
 			if(out.errors) {
