@@ -15,21 +15,24 @@ class BLManager {
 			const source = fs.readFileSync(inboxPath, 'utf8').toString();
 
 
-    		solc.loadRemoteVersion(version, function (err, solcV) {
-    		console.log(solcV)
-          	console.log("on loadRemoteVersion:" + version);
-          if (err) {
-            console.error('Error==>',err);
-            
-          }
-          else {
-            targetSolc = solcV;
-            soliCompCache[version] = targetSolc;//compiler cache
-             output = targetSolc.compile(res.verifycode, optimise);
-            console.error('output==>',output);
-          }
-        });
-
+    		var input = {
+		    language: 'Solidity',
+		    sources: {
+		        'contract.sol': {content : source}
+		    },
+		    settings: {
+		        outputSelection: {
+		            '*': {
+		                '*': [ '*' ]
+		            }
+		        }
+		    }
+		};
+		var output = JSON.parse(solc.compile(JSON.stringify(input)))
+		console.log('output here===>',output)
+		for (var contractName in output.contracts['ABC.sol']) {
+    		console.log(contractName + ': ' + output.contracts['ABC.sol'][contractName].evm.bytecode.object)
+		}
 
 		} catch (err) {
 		  console.error(err)
