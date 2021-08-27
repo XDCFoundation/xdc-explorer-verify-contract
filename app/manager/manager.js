@@ -13,7 +13,7 @@ class BLManager {
     	//const filePath = path.join(__dirname, 'mycontract.sol');
 
     	try {
-    		const inboxPath = path.resolve(__dirname, 'contracts', 'mycontract.sol');
+    		const inboxPath = path.resolve(__dirname, 'mycontract.sol');
 			const source = fs.readFileSync(inboxPath, 'utf8').toString();
     		
     		solc.loadRemoteVersion('v0.4.1+commit.4fc6fc2c', function(err, solcV04){
