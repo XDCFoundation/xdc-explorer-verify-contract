@@ -19,15 +19,15 @@ class BLManager {
 			const input = { 
     			'mycontract.sol': fs.readFileSync(path.resolve(__dirname, 'mycontract.sol'), 'utf8') 
 			}
-			const output= solc.compile({sources: input}, 1);
+			const out = solc.compile({sources: input}, 1);
 
-			if(output.errors) {
-			    output.errors.forEach(err => {
+			if(out.errors) {
+			    out.errors.forEach(err => {
 			        console.log(err);
 			    });
 			} else {
-			    const bytecode = output.contracts['mycontract.sol:Inbox'].bytecode;
-			    const abi = output.contracts['mycontract.sol:Inbox'].interface;
+			    const bytecode = out.contracts['mycontract.sol:Inbox'].bytecode;
+			    const abi = out.contracts['mycontract.sol:Inbox'].interface;
 			    console.log(`bytecode: ${bytecode}`);
 			    console.log(`abi: ${JSON.stringify(JSON.parse(abi), null, 2)}`);
 			}
