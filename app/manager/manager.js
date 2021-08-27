@@ -13,23 +13,11 @@ class BLManager {
     	//const filePath = path.join(__dirname, 'mycontract.sol');
 
     	try {
-    		var input = {
-		    language: 'Solidity',
-		    sources: {
-		        'mycontract.sol': {content : res.verifycode}
-		    },
-		    settings: {
-		        outputSelection: {
-		            '*': {
-		                '*': [ '*' ]
-		            }
-		        }
-		    }
-		};
+    		
     		
     		solc.loadRemoteVersion(version, function (err, solcV) {
           	console.log("on loadRemoteVersion:" + version);
-	          if (err) {
+	         /* if (err) {
 	            console.error(err);
 	            data.valid = false;
 	            data.err = err.toString();
@@ -44,7 +32,7 @@ class BLManager {
 	             output = targetSolc.compile(res.verifycode, optimise);
 	             return output;
 	            //testValidCode(output, data, bytecode, res);
-	          }
+	          }*/
         });
     		/*
     		
