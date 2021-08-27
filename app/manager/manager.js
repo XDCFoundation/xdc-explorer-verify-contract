@@ -19,23 +19,22 @@ class BLManager {
 			const input = { 
     			'mycontract.sol': fs.readFileSync(path.resolve(__dirname, 'mycontract.sol'), 'utf8') 
 			}
-			solc.loadRemoteVersion('v0.4.24+commit.e67f0147', function (err, solcV) {
-				console.log('@@@@@===',solcV)
-			});
-			/*const out = solc.compile({sources: input}, 1);
+
+			const out = solc.compile({sources: input}, 1);
 
 			if(out.errors) {
 			    out.errors.forEach(err => {
 			        console.log(err);
 			    });
 			} else {
-			    const bytecode = out.contracts['mycontract.sol:Inbox'].bytecode;
+			    /*const bytecode = out.contracts['mycontract.sol:Inbox'].bytecode;
 			    const abi = out.contracts['mycontract.sol:Inbox'].interface;
 			    console.log(`bytecode: ${bytecode}`);
-			    console.log(`abi: ${JSON.stringify(JSON.parse(abi), null, 2)}`);
+			    console.log(`abi: ${JSON.stringify(JSON.parse(abi), null, 2)}`);*/
+			    console.log(out)
 			}
 
-			*/
+
 
 			
     		
