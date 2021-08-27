@@ -35,11 +35,11 @@ class BLManager {
 		        }
 		    }
 		};
-		var output = JSON.parse(solc.compile(JSON.stringify(input)))
+		/*var output = JSON.parse(solc.compile(JSON.stringify(input)))
 		console.log('output here===>',output)
 		for (var contractName in output.contracts['ABC.sol']) {
     		console.log(contractName + ': ' + output.contracts['ABC.sol'][contractName].evm.bytecode.object)
-		}
+		}*/
 
 		} catch (err) {
 		  console.error(err)
