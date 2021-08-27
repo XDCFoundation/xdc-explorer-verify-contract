@@ -16,7 +16,21 @@ class BLManager {
     		const inboxPath = path.resolve(__dirname, 'mycontract.sol');
 			const source = fs.readFileSync(inboxPath, 'utf8').toString();
 
-			
+			var input = {
+			  language: 'Solidity',
+			  sources: {
+			    inboxPath: {
+			      content: 'contract C { function f() public { } }'
+			    }
+			  },
+			  settings: {
+			    outputSelection: {
+			      '*': {
+			        '*': ['*']
+			      }
+			    }
+			  }
+			};
 			console.log(solc.compile(JSON.stringify({
 			    language: 'Solidity',
 			    sources: {
@@ -33,8 +47,10 @@ class BLManager {
 			    },
 			  })));
 
-
 			
+			solc.loadRemoteVersion(version, function (err, solcV) {
+
+			});
 			console.log('====>>>>>>>',solc.compile(JSON.stringify(input)))
 
 
