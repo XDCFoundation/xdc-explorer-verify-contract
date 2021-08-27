@@ -26,7 +26,7 @@ class BLManager {
 		        }
 		    }
 		};
-    		console.log(filePath);
+    		
     		solc.loadRemoteVersion(version, function (err, solcV) {
           	console.log("on loadRemoteVersion:" + version);
 	          if (err) {
