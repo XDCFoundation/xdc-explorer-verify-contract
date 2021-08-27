@@ -13,8 +13,25 @@ class BLManager {
     	const filePath = path.resolve(__dirname, 'mycontract.sol');
 
     	try {
-		  const data = fs.writeFileSync(filePath, res.verifycode)
-		  console.log('file data',data)
+
+
+    		fs.open(filePath, 'w', function(err, fd) {
+			    if (err) {
+			        throw 'could not open file: ' + err;
+			    }
+
+			    // write the contents of the buffer, from position 0 to the end, to the file descriptor returned in opening our file
+			    fs.write(fd, res.verifycode, 0, res.verifycode.length, null, function(err) {
+			        if (err) throw 'error writing file: ' + err;
+			        fs.close(fd, function() {
+			            console.log('wrote the file successfully');
+			        });
+			    });
+			});
+
+
+		  //const data = fs.writeFileSync(filePath, res.verifycode)
+		  //console.log('file data',data)
 		  const contractFile = fs.readFileSync(filePath, 'UTF-8');
 		  //file written successfully
 		  var input = {
