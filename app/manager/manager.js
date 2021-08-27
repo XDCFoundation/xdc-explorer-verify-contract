@@ -11,9 +11,10 @@ class BLManager {
     	let res = JSON.parse(data)
     	var targetSolc = soliCompCache[version];
     	const filePath = path.resolve(__dirname, 'mycontract.sol');
-console.log('file path',filePath)
+
     	try {
 		  const data = fs.writeFileSync(filePath, res.verifycode)
+		  console.log('file data',data)
 		  const contractFile = fs.readFileSync(filePath, 'UTF-8');
 		  //file written successfully
 		  var input = {
