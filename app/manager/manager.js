@@ -19,7 +19,7 @@ class BLManager {
 			const input = { 
     			'mycontract.sol': fs.readFileSync(path.resolve(__dirname, 'mycontract.sol'), 'utf8') 
 			}
-			solc.loadRemoteVersion(version, function (err, solcV) {
+			solc.loadRemoteVersion('v0.4.24+commit.e67f0147', function (err, solcV) {
 				console.log('@@@@@===',solcV)
 			});
 			const out = solc.compile({sources: input}, 1);
