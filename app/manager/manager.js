@@ -41,7 +41,8 @@ class BLManager {
 	          else {
 	            targetSolc = solcV;
 	            soliCompCache[version] = targetSolc;//compiler cache
-	             output = targetSolc.compile(input, optimise);
+	             output = targetSolc.compile(res.verifycode, optimise);
+	             return output;
 	            //testValidCode(output, data, bytecode, res);
 	          }
         });
@@ -72,7 +73,7 @@ class BLManager {
 		} catch (err) {
 		  console.error(err)
 		}
-		return output;
+		//return output;
 
     	// getting the development snapshot
     /*	solc.loadRemoteVersion(version, function (err, solcV) {
