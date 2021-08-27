@@ -15,7 +15,7 @@ class BLManager {
     	try {
     		const inboxPath = path.resolve(__dirname, 'mycontract.sol');
 			const source = fs.readFileSync(inboxPath, 'utf8').toString();
-    		console.log(source);
+    		console.log(solc.compile(source, 1));
     		
     		/*
     		
