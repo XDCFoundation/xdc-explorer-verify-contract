@@ -16,53 +16,25 @@ class BLManager {
     		const inboxPath = path.resolve(__dirname, 'mycontract.sol');
 			const source = fs.readFileSync(inboxPath, 'utf8').toString();
 
-			var input = {
-			  language: 'Solidity',
-			  sources: {
-			    inboxPath: {
-			      content: 'contract C { function f() public { } }'
-			    }
-			  },
-			  settings: {
-			    outputSelection: {
-			      '*': {
-			        '*': ['*']
-			      }
-			    }
-			  }
-			};
-			console.log(solc.compile(JSON.stringify({
-			    language: 'Solidity',
-			    sources: {
-			      'mycontract.sol': {
-			        content: source,
-			      },
-			    },
-			    settings: {
-			      outputSelection: {
-			        '*': {
-			          '*': ['evm', 'bytecode'],
-			        },
-			      },
-			    },
-			  })));
+			const input = { 
+    			'mycontract.sol': fs.readFileSync(path.resolve(__dirname, 'mycontract.sol'), 'utf8') 
+			}
+			const output= solc.compile({sources: input}, 1);
+
+			if(output.errors) {
+			    output.errors.forEach(err => {
+			        console.log(err);
+			    });
+			} else {
+			    const bytecode = output.contracts['mycontract.sol:Inbox'].bytecode;
+			    const abi = output.contracts['mycontract.sol:Inbox'].interface;
+			    console.log(`bytecode: ${bytecode}`);
+			    console.log(`abi: ${JSON.stringify(JSON.parse(abi), null, 2)}`);
+			}
+
+
 
 			
-			solc.loadRemoteVersion(version, function (err, solcV) {
-
-			});
-			console.log('====>>>>>>>',solc.compile(JSON.stringify(input)))
-
-
-
-			var output = JSON.parse(solc.compile(JSON.stringify(input)));
-			for (var contractName in output.contracts['test.sol']) {
-			  console.log(
-			    contractName +
-			      ': ' +
-			      output.contracts['test.sol'][contractName].evm.bytecode.object
-			  );
-			}
     		
     		
     		/*
