@@ -29,9 +29,8 @@ class BLManager {
 		    }
 		};
 		var output = solc.compile(JSON.stringify(input))
-		console.log('output here===>',output)
-		for (var contractName in output.contracts['ABC.sol']) {
-    		console.log(contractName + ': ' + output.contracts['ABC.sol'][contractName].evm.bytecode.object)
+		for (var contractName in output.contracts['contract.sol']) {
+    		console.log(contractName + ': ' + output.contracts['contract.sol'][contractName].evm.bytecode.object)
 		}
 
 		} catch (err) {

@@ -17,7 +17,7 @@
     "mocha": "^9.0.0",
     "moment": "^2.29.1",
     "save": "^2.4.0",
-    "solc": "^0.4.24",
+    "solc": "^0.4.25",
     "xinfin-explorer-models": "file:libraries/model"
   }
 }
