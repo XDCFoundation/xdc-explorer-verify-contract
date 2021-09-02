@@ -3,7 +3,8 @@ var solc = require('solc');
 const fs = require('fs');
 const path = require('path');
 class BLManager {
-    async VerifyContract(data) {
+    async VerifyContract(response) {
+    	let data = JSON.parse(response)
     	console.log('data===>',data.action)
     	if(data.action == 'compile'){
     		let version = data.version
