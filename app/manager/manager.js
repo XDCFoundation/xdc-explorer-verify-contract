@@ -5,7 +5,7 @@ const path = require('path');
 class BLManager {
     async VerifyContract(response) {
     	let data = JSON.parse(response)
-    	console.log('data===>',data.action)
+    	
     	if(data.action == 'compile'){
     		let version = data.version
     		let optimise = (data.optimise > 0)  ? 1 : 0
@@ -14,6 +14,8 @@ class BLManager {
     		let name = data.contractname
     		var concatByteCode = "";
             var verifiedContracts = [];
+            let finalVersion = version.split('-')
+            console.log(finalVersion)
     		if(version == 'latest'){
 
     		}else{
