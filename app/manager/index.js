@@ -12,7 +12,7 @@ class Manger {
         //lhtLog("Manager:getVerifyContract", "getVerifyContract started", Config.IS_CONSOLE_LOG, "");
         
         let [error, response] = await parseResponse(
-            new BlManager().VerifyContract(req)
+            new BlManager().VerifyContract(req.body)
         );
         if (error) {
            // lhtLog("Manager:getVerifyContract", "getVerifyContract end", error, "", "ERROR");
