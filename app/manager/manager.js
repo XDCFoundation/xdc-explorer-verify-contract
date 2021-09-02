@@ -15,7 +15,7 @@ class BLManager {
     		var concatByteCode = "";
             var verifiedContracts = [];
             let finalVersion = version.split('-')
-            console.log(finalVersion)
+            console.log(finalVersion[1])
     		if(version == 'latest'){
 
     		}else{
