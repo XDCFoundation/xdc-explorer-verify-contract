@@ -16,7 +16,7 @@ class BLManager {
 
     		}else{
     			solc.loadRemoteVersion(version, function (err, solcV) {
-    				var output = solcV.compile(source, optimise);
+    				var output = solcV.compile(code, optimise);
     				for (var contractName in output.contracts) {
 		              concatByteCode += output.contracts[contractName].bytecode;
 		              verifiedContracts.push({
