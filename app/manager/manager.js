@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 class BLManager {
     async VerifyContract(data) {
+    	console.log('data===>',data)
     	if(data.action == 'compile'){
     		let version = data.version
     		let optimise = (data.optimise > 0)  ? 1 : 0
