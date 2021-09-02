@@ -12,7 +12,7 @@ class BLManager {
     		let name = data.contractname
     		var concatByteCode = "";
             var verifiedContracts = [];
-
+console.log('object====>',code)
     		if(version == 'latest'){
 
     		}else{
