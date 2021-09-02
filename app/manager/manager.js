@@ -1,7 +1,5 @@
 //const { lhtLog } = require("lh-utilities/utilityMethods");
 var solc = require('solc');
-const fs = require('fs');
-const path = require('path');
 class BLManager {
     async VerifyContract(response) {
     	let data = JSON.parse(response)
@@ -10,7 +8,7 @@ class BLManager {
     		let version = data.version
     		let optimise = (data.optimise > 0)  ? 1 : 0
     		let address = data.addr
-    		let code = data.code.tostring()
+    		let code = data.code
     		let name = data.contractname
     		var concatByteCode = "";
             var verifiedContracts = [];
