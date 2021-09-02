@@ -5,6 +5,7 @@ const path = require('path');
 class BLManager {
     async VerifyContract(data) {
     	console.log('params====>',data)
+    	return data;
     }
 }
 
