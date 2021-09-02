@@ -10,16 +10,17 @@ class BLManager {
     		let version = data.version
     		let optimise = (data.optimise > 0)  ? 1 : 0
     		let address = data.addr
-    		let code = data.code
+    		let code = data.code.tostring()
     		let name = data.contractname
     		var concatByteCode = "";
             var verifiedContracts = [];
-            
+
     		if(version == 'latest'){
 
     		}else{
     			solc.loadRemoteVersion(version, function (err, solcV) {
     				var output = solcV.compile(code, optimise);
+    				console.log('object====>',output)
     				for (var contractName in output.contracts) {
 		              concatByteCode += output.contracts[contractName].bytecode;
 		              verifiedContracts.push({
