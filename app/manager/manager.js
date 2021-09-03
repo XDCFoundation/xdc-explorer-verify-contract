@@ -33,6 +33,7 @@ class BLManager {
     		}else{
     			try {
     				var url = 'https://binaries.soliditylang.org/bin/soljson-' + version + '.js';
+    				console.log(url)
 				      https.get(url, function (response) {
 				        if (response.statusCode !== 200) {
 				          console.log('Error retrieving binary: ' + response.statusMessage)
