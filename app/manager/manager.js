@@ -31,7 +31,7 @@ class BLManager {
 
     		}else{
     			try {
-    				await solc.loadRemoteVersion(version, function (err, solcV) { 
+    				let result = await solc.loadRemoteVersion(version, function (err, solcV) { 
     					console.log('object====>',solcV)
 	    				targetSolc = solcV;
 	            		soliCompCache[version] = targetSolc;//compiler cache
@@ -53,7 +53,7 @@ class BLManager {
     		}
     	}
     	
-    	return verifiedContracts;
+    	return result;
     }
 }
 
