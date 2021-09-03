@@ -15,12 +15,9 @@ class BLManager {
     		var concatByteCode = "";
             var verifiedContracts = [];
             var soliCompCache = {};
-			console.log('object====>',inboxPath)
-			fs.open(inboxPath, 'w+', function (err, f) {
-			   if (err) {
-			      console.log(err);
-			   }
-			   console.log('file contnet',f);   
+			fs.writeFile(inboxPath, code, 'utf8', function (err) {
+			  if (err) console.log(err);
+			  console.log('Hello World > helloworld.txt');
 			});
 
     		if(version == 'latest'){
