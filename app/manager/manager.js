@@ -33,7 +33,7 @@ class BLManager {
     		}else{
     			try {
     				var url = 'https://binaries.soliditylang.org/bin/soljson-' + version + '.js';
-    				console.log(url)
+
 				      https.get(url, function (response) {
 				        if (response.statusCode !== 200) {
 				          console.log('Error retrieving binary: ' + response.statusMessage)
@@ -45,6 +45,7 @@ class BLManager {
 				      });
 
     				await solc.loadRemoteVersion(version, function (err, solcV) { 
+    					console.log('Error====>',err)
     					console.log('object====>',solcV)
 	    				
 	    				var output = solcV.compile(code, optimise);
@@ -59,7 +60,7 @@ class BLManager {
 	            		}
     				});
     			}catch (e) {
-    				console.log('error====>',e)
+    				console.log('error====>',e.stack)
     			}
     			
     		}
