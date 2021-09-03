@@ -1,5 +1,6 @@
 //const { lhtLog } = require("lh-utilities/utilityMethods");
 var solc = require('solc');
+const https = require('https')
 //var fs = require('fs');
 //const path = require('path');
 //const fsPromises = require("fs").promises;
@@ -31,7 +32,18 @@ class BLManager {
 
     		}else{
     			try {
-    				let result = await solc.loadRemoteVersion(version, function (err, solcV) { 
+    				var url = 'https://binaries.soliditylang.org/bin/soljson-' + version + '.js';
+				      https.get(url, function (response) {
+				        if (response.statusCode !== 200) {
+				          console.log('Error retrieving binary: ' + response.statusMessage)
+				        } else {
+				          console.log('not error')
+				        }
+				      }).on('error', function (error) {
+				        console.log('Error is here====>',error)
+				      });
+
+    				await solc.loadRemoteVersion(version, function (err, solcV) { 
     					console.log('object====>',solcV)
 	    				targetSolc = solcV;
 	            		soliCompCache[version] = targetSolc;//compiler cache
@@ -46,7 +58,6 @@ class BLManager {
 			              });
 	            		}
     				});
-    				return result;
     			}catch (e) {
     				console.log('error====>',e)
     			}
@@ -54,7 +65,7 @@ class BLManager {
     		}
     	}
     	
-    	return result;
+    	return verifiedContracts;
     }
 }
 
