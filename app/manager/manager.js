@@ -1,9 +1,11 @@
 //const { lhtLog } = require("lh-utilities/utilityMethods");
 var solc = require('solc');
+var fs = require('fs');
+const path = require('path');
 class BLManager {
     async VerifyContract(response) {
     	let data = JSON.parse(response)
-    	
+    	const inboxPath = path.resolve(__dirname, 'contract.sol');
     	if(data.action == 'compile'){
     		let version = data.version
     		let optimise = (data.optimise > 0)  ? 1 : 0
@@ -13,7 +15,14 @@ class BLManager {
     		var concatByteCode = "";
             var verifiedContracts = [];
             var soliCompCache = {};
-console.log('object====>',optimise)
+			console.log('object====>',optimise)
+			fs.open(inboxPath, 'w+', function (err, f) {
+			   if (err) {
+			      return console.error(err);
+			   }
+			   console.log(f);   
+			});
+
     		if(version == 'latest'){
 
     		}else{
