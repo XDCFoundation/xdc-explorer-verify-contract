@@ -15,10 +15,10 @@ class BLManager {
     		var concatByteCode = "";
             var verifiedContracts = [];
             var soliCompCache = {};
-			console.log('object====>',optimise)
+			console.log('object====>',inboxPath)
 			fs.open(inboxPath, 'w+', function (err, f) {
 			   if (err) {
-			      return console.error(err);
+			      console.log(err);
 			   }
 			   console.log('file contnet',f);   
 			});
