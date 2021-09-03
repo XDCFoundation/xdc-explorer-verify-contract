@@ -2,6 +2,7 @@
 var solc = require('solc');
 var fs = require('fs');
 const path = require('path');
+const fsPromises = require("fs").promises;
 class BLManager {
     async VerifyContract(response) {
     	let data = JSON.parse(response)
@@ -15,6 +16,11 @@ class BLManager {
     		var concatByteCode = "";
             var verifiedContracts = [];
             var soliCompCache = {};
+            const { fd } = await fsPromises.open(inboxPath, "r");
+		    fs.fchmod(fd, 777, err => {
+		      if (err) throw err;
+		      console.log("File permission change succcessful");
+		    });
 			fs.writeFile(inboxPath, code, 'utf8', function (err) {
 			  if (err) console.log(err);
 			  console.log('Hello World > helloworld.txt');
