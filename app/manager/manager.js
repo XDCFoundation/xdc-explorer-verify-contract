@@ -45,9 +45,8 @@ class BLManager {
 
     				await solc.loadRemoteVersion(version, function (err, solcV) { 
     					console.log('object====>',solcV)
-	    				targetSolc = solcV;
-	            		soliCompCache[version] = targetSolc;//compiler cache
-	    				var output = targetSolc.compile(code, optimise);
+	    				
+	    				var output = solcV.compile(code, optimise);
 	    				
 	    				for (var contractName in output.contracts) {
 			              concatByteCode += output.contracts[contractName].bytecode;
