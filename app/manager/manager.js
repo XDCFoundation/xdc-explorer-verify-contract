@@ -17,6 +17,7 @@ console.log('object====>',optimise)
     		if(version == 'latest'){
 
     		}else{
+    			console.log('====>')
     			solc.loadRemoteVersion(version, function (err, solcV) {
     				targetSolc = solcV;
             		soliCompCache[version] = targetSolc;//compiler cache
