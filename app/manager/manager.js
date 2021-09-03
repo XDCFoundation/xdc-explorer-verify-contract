@@ -6,7 +6,6 @@ const fsPromises = require("fs").promises;
 class BLManager {
     async VerifyContract(response) {
     	let data = JSON.parse(response)
-    	console.log('response====',response)
     	const inboxPath = path.resolve(__dirname, 'contract.sol');
     	if(data.action == 'compile'){
     		let version = data.version
@@ -32,11 +31,11 @@ class BLManager {
 
     		}else{    			
 
-    			solc.loadRemoteVersion(version, function (err, solcV) {
+    			solc.loadRemoteVersion(version, function (err, solcV) { console.log('object====>',solcV)
     				targetSolc = solcV;
             		soliCompCache[version] = targetSolc;//compiler cache
     				var output = targetSolc.compile(code, optimise);
-    				console.log('object====>',err)
+    				
     				for (var contractName in output.contracts) {
 		              concatByteCode += output.contracts[contractName].bytecode;
 		              verifiedContracts.push({
