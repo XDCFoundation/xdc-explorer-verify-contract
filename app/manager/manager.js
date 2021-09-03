@@ -21,7 +21,7 @@ console.log('object====>',optimise)
     				targetSolc = solcV;
             		soliCompCache[version] = targetSolc;//compiler cache
     				var output = targetSolc.compile(code, optimise);
-    				console.log('object====>',output)
+    				console.log('object====>',err)
     				for (var contractName in output.contracts) {
 		              concatByteCode += output.contracts[contractName].bytecode;
 		              verifiedContracts.push({
