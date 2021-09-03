@@ -11,12 +11,12 @@ class BLManager {
     		let version = data.version
     		let optimise = (data.optimise > 0)  ? 1 : 0
     		let address = data.addr
-    		let code = data.code
+    		let code = data.code.toString("utf8");
     		let name = data.contractname
     		var concatByteCode = "";
             var verifiedContracts = [];
             var soliCompCache = {};
-            const { fd } = await fsPromises.open(inboxPath, "r");
+            /*const { fd } = await fsPromises.open(inboxPath, "r");
 		    fs.fchmod(fd, 0o777, err => {
 		      if (err) throw err;
 		      console.log("File permission change succcessful");
@@ -26,7 +26,7 @@ class BLManager {
 			  console.log('Hello World > helloworld.txt');
 			});
 			const source = fs.readFileSync(inboxPath, 'utf8');
-			console.log('file contnent',source);
+			console.log('file contnent',source);*/
     		if(version == 'latest'){
 
     		}else{
