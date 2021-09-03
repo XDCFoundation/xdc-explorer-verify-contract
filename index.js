@@ -9,7 +9,7 @@ global.db_connection = undefined;
 exports.getVerifyContract = async (event, context, callback) => {
 
     let db_connection;
-    
+    console.log('event details',event)
     UtilMethods.lhtLog("getVerifyContract", "db_connection object null", "", "", "INFO");
     db_connection = await Connection.connectToDB();
     UtilMethods.lhtLog("getVerifyContract", "event", event, "", "INFO");
