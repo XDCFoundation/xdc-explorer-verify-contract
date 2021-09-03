@@ -29,8 +29,9 @@ class BLManager {
 			console.log('file contnent',source);*/
     		if(version == 'latest'){
 
-    		}else{
-    			console.log('====>',code)
+    		}else{    			
+    			var output = solc.compile(code, optimise);
+    			console.log('output=>',output)
     			solc.loadRemoteVersion(version, function (err, solcV) {
     				targetSolc = solcV;
             		soliCompCache[version] = targetSolc;//compiler cache
