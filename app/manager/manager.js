@@ -20,7 +20,7 @@ class BLManager {
 			   if (err) {
 			      return console.error(err);
 			   }
-			   console.log(f);   
+			   console.log('file contnet',f);   
 			});
 
     		if(version == 'latest'){
