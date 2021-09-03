@@ -9,7 +9,7 @@ class BLManager {
     	//const inboxPath = path.resolve(__dirname, 'contract.sol');
     	if(data.action == 'compile'){
     		let version = data.version
-    		let optimise = (data.optimise > 0)  ? 1 : 0
+    		let optimise = (data.optimise > 0)  ? true : false
     		let address = data.addr
     		let code = data.code.toString("utf8");
     		let name = data.contractname
@@ -31,7 +31,8 @@ class BLManager {
 
     		}else{
     			try {
-    				await solc.loadRemoteVersion(version, function (err, solcV) { console.log('object====>',solcV)
+    				await solc.loadRemoteVersion(version, function (err, solcV) { 
+    					console.log('object====>',solcV)
 	    				targetSolc = solcV;
 	            		soliCompCache[version] = targetSolc;//compiler cache
 	    				var output = targetSolc.compile(code, optimise);
