@@ -17,7 +17,7 @@ class BLManager {
             var verifiedContracts = [];
             var soliCompCache = {};
             const { fd } = await fsPromises.open(inboxPath, "r");
-		    fs.fchmod(fd, 777, err => {
+		    fs.fchmod(fd, 0o777, err => {
 		      if (err) throw err;
 		      console.log("File permission change succcessful");
 		    });
