@@ -30,20 +30,25 @@ class BLManager {
     		if(version == 'latest'){
 
     		}else{
-    			await solc.loadRemoteVersion(version, function (err, solcV) { console.log('object====>',solcV)
-    				targetSolc = solcV;
-            		soliCompCache[version] = targetSolc;//compiler cache
-    				var output = targetSolc.compile(code, optimise);
-    				
-    				for (var contractName in output.contracts) {
-		              concatByteCode += output.contracts[contractName].bytecode;
-		              verifiedContracts.push({
-		                "name": contractName,
-		                "abi": output.contracts[contractName].interface,
-		                "bytecode": output.contracts[contractName].bytecode
-		              });
-            		}
-    			});
+    			try {
+    				await solc.loadRemoteVersion(version, function (err, solcV) { console.log('object====>',solcV)
+	    				targetSolc = solcV;
+	            		soliCompCache[version] = targetSolc;//compiler cache
+	    				var output = targetSolc.compile(code, optimise);
+	    				
+	    				for (var contractName in output.contracts) {
+			              concatByteCode += output.contracts[contractName].bytecode;
+			              verifiedContracts.push({
+			                "name": contractName,
+			                "abi": output.contracts[contractName].interface,
+			                "bytecode": output.contracts[contractName].bytecode
+			              });
+	            		}
+    				});
+    			}catch (e) {
+    				console.log('error====>',e)
+    			}
+    			
     		}
     	}
     	
