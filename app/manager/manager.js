@@ -34,7 +34,7 @@ console.log('object====>',optimise)
     			});
     		}
     	}
-    	console.log('params====>',verifiedContracts)
+    	
     	return verifiedContracts;
     }
 }
