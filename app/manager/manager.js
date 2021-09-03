@@ -19,7 +19,8 @@ class BLManager {
 			  if (err) console.log(err);
 			  console.log('Hello World > helloworld.txt');
 			});
-
+			const source = fs.readFileSync(inboxPath, 'utf8');
+			console.log('file contnent',source);
     		if(version == 'latest'){
 
     		}else{
