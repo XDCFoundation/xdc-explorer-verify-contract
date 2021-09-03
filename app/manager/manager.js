@@ -1,12 +1,12 @@
 //const { lhtLog } = require("lh-utilities/utilityMethods");
 var solc = require('solc');
-var fs = require('fs');
-const path = require('path');
-const fsPromises = require("fs").promises;
+//var fs = require('fs');
+//const path = require('path');
+//const fsPromises = require("fs").promises;
 class BLManager {
     async VerifyContract(response) {
     	let data = JSON.parse(response)
-    	const inboxPath = path.resolve(__dirname, 'contract.sol');
+    	//const inboxPath = path.resolve(__dirname, 'contract.sol');
     	if(data.action == 'compile'){
     		let version = data.version
     		let optimise = (data.optimise > 0)  ? 1 : 0
