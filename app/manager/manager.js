@@ -46,6 +46,7 @@ class BLManager {
 			              });
 	            		}
     				});
+    				return result;
     			}catch (e) {
     				console.log('error====>',e)
     			}
