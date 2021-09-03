@@ -29,8 +29,7 @@ class BLManager {
 			console.log('file contnent',source);*/
     		if(version == 'latest'){
 
-    		}else{    			
-console.log('object====>',solc)
+    		}else{
     			solc.loadRemoteVersion(version, function (err, solcV) { console.log('object====>',solcV)
     				targetSolc = solcV;
             		soliCompCache[version] = targetSolc;//compiler cache
