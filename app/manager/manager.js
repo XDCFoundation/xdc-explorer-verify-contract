@@ -6,6 +6,7 @@ const fsPromises = require("fs").promises;
 class BLManager {
     async VerifyContract(response) {
     	let data = JSON.parse(response)
+    	console.log('response====',response)
     	const inboxPath = path.resolve(__dirname, 'contract.sol');
     	if(data.action == 'compile'){
     		let version = data.version
@@ -30,7 +31,7 @@ class BLManager {
     		if(version == 'latest'){
 
     		}else{    			
-    			
+
     			solc.loadRemoteVersion(version, function (err, solcV) {
     				targetSolc = solcV;
             		soliCompCache[version] = targetSolc;//compiler cache
