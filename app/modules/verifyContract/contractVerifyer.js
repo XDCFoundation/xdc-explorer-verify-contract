@@ -139,13 +139,14 @@ module.exports.verifier = async (settings, provider) => {
 				  var swarm_hash_full = output.slice(output.lastIndexOf("a165627a7a72305820"), -4);
 				  var swarm_hash = swarm_hash_full.slice(18);
 				  bytecode_from_blockchain = output.slice(0, ending_point);
-
+				let jsonParseData;
+				let abicode;
 				if (bytecode_from_blockchain == bytecode_from_compiler) {
-					let jsonParseData = JSON.parse(data.contracts["file"][contract_name]['metadata'])
-					let abicode = JSON.stringify(jsonParseData.output.abi)
+					 jsonParseData = JSON.parse(data.contracts["file"][contract_name]['metadata'])
+					 abicode = JSON.stringify(jsonParseData.output.abi)
 					
 					
-				ContractModel.updateContract(
+				 ContractModel.updateContract(
 						{ address: contract_address },
 						{
 							$set: {
@@ -173,7 +174,20 @@ module.exports.verifier = async (settings, provider) => {
 			  // if the solc version is less than 0.4.7, then just directly compared the two.
 			  else {
 				bytecode_from_blockchain = output;
-				  if (bytecode_from_blockchain == bytecode_from_compiler) {
+				if (bytecode_from_blockchain == bytecode_from_compiler) {
+					jsonParseData = JSON.parse(data.contracts["file"][contract_name]['metadata'])
+					 abicode = JSON.stringify(jsonParseData.output.abi)
+					  ContractModel.updateContract(
+						{ address: contract_address },
+						{
+							$set: {
+								compilerVersion: solc_version,
+								sourceCode: sourse_code,
+								abi: abicode,
+								byteCode: bytecode_from_blockchain
+							}
+						}
+					)
 					  responseStatus.push({
 						  "Error": 0,
 						  "data": data,
