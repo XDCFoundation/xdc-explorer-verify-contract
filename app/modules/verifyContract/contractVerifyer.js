@@ -73,8 +73,9 @@ module.exports.verifier = async (settings, provider) => {
 		if (!version) return;
 		return new Promise((resolve, reject) => {
 			 solc.loadRemoteVersion(version, function(err, solc_specific){
-				if (err) {
-					reject("There is an error to load solidity version "+version);
+				 if (err) {
+					
+						resolve();
 				}
 				try {  
 					output = JSON.parse(solc_specific.compile(JSON.stringify(input_json)),is_optimized);
@@ -94,10 +95,10 @@ module.exports.verifier = async (settings, provider) => {
 					
 				} catch (err) { 
 					responseStatus.push({
-						"Error": 1,
-						"data": null,
-						"message": "Oops! there is an error, please try after some time.",
-					})
+							"Error": 1,
+							"data": null,
+							"message": "Bytecode doesn't match!!.",
+						})
 				}
 			});
 		})
