@@ -1,5 +1,6 @@
 module.exports = {
   DB: process.env.DB || '',
   PORT: process.env.PORT || '3000',
-  IS_CONSOLE_LOG: process.env.IS_CONSOLE_LOG || 'true'
+  IS_CONSOLE_LOG: process.env.IS_CONSOLE_LOG || 'true',
+  PROVIDER_URL: process.env.PROVIDER_URL || "wss://LeewayHertzXDCWS.BlocksScan.io"
 }
