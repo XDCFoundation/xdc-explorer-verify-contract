@@ -142,7 +142,7 @@ module.exports.verifier = async (settings, provider) => {
 				  bytecode_from_blockchain = output.slice(0, ending_point);
 				let jsonParseData;
 				let abicode;
-				if (bytecode_from_blockchain == bytecode_from_compiler) {
+				if (bytecode_from_blockchain === bytecode_from_compiler) {
 					 jsonParseData = JSON.parse(data.contracts["file"][contract_name]['metadata'])
 					 abicode = JSON.stringify(jsonParseData.output.abi)
 					
@@ -175,13 +175,21 @@ module.exports.verifier = async (settings, provider) => {
 			  // if the solc version is less than 0.4.7, then just directly compared the two.
 			  else {
 				bytecode_from_blockchain = output;
-				if (bytecode_from_blockchain == bytecode_from_compiler) {
-					jsonParseData = JSON.parse(data.contracts["file"][contract_name]['metadata'])
-					 abicode = JSON.stringify(jsonParseData.output.abi)
+				if (bytecode_from_blockchain === bytecode_from_compiler) {
+					let jsonParseData = JSON.parse(data.contracts["file"][contract_name]['metadata'])
+					 let abicode = JSON.stringify(jsonParseData.output.abi)
+					let contractAddress=contract_address.replace(/^.{2}/g, 'xdc');
 					  ContractModel.updateContract(
-						{ address: contract_address },
+						{ address: contractAddress },
 						{
 							$set: {
+								address:contractAddress,
+								contractName: contract_name,
+								optimization: false,
+								createdOn: Date.now(),
+								modifiedOn: Date.now(),
+								isActive:  true ,
+								isDeleted:  false,
 								compilerVersion: solc_version,
 								sourceCode: sourse_code,
 								abi: abicode,
