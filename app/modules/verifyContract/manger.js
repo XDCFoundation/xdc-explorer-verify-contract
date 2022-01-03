@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const { verifier } = require('./contractVerifyer');
 import Config from "../../../config"
+
 export default class Manger {
   verifyContract = async (requestData) => {
     var data = {}
@@ -15,7 +16,6 @@ export default class Manger {
       'sourse_code': requestData.code
     }
 
-    let response = await verifier(settings, provider);
-    return response;
+    return await verifier(settings, provider);
   }
 }

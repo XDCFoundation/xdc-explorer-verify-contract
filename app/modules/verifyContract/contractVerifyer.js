@@ -44,7 +44,7 @@ module.exports.verifier = async (settings, provider) => {
 							}
 						}							
 				}
-	if (solc_version == 'latest') {			
+	if (solc_version === 'latest') {
 			
 				
 				// if solc successfully loaded, compile the contract and get the JSON output
@@ -130,8 +130,11 @@ module.exports.verifier = async (settings, provider) => {
 
   async function verify_with_blockchain(solc_version , data){ 
   	// using web3 getCode function to read from blockchain
-	 await web3.eth.getCode(contract_address,function(error, output) 
-	  { 
+	 await web3.eth.getCode(contract_address,async function(error, output)
+	  {
+		 let jsonParseData = JSON.parse(data.contracts["file"][contract_name]['metadata'])
+		  let abicode = JSON.stringify(jsonParseData.output.abi)
+		  let contractAddress=contract_address.replace(/^.{2}/g, 'xdc');
 		  if(!error) {
 			if (parseInt(solc_version.match(/v\d+?\.\d+?\.\d+?[+-]/gi)[0].match(/\.\d+/g)[0].slice(1)) >= 4
 				  && parseInt(solc_version.match(/v\d+?\.\d+?\.\d+?[+-]/gi)[0].match(/\.\d+/g)[1].slice(1)) >= 7) {
@@ -140,24 +143,30 @@ module.exports.verifier = async (settings, provider) => {
 				  var swarm_hash_full = output.slice(output.lastIndexOf("a165627a7a72305820"), -4);
 				  var swarm_hash = swarm_hash_full.slice(18);
 				  bytecode_from_blockchain = output.slice(0, ending_point);
-				let jsonParseData;
-				let abicode;
 				if (bytecode_from_blockchain === bytecode_from_compiler) {
-					 jsonParseData = JSON.parse(data.contracts["file"][contract_name]['metadata'])
-					 abicode = JSON.stringify(jsonParseData.output.abi)
-					
-					
-				 ContractModel.updateContract(
-						{ address: contract_address },
-						{
-							$set: {
+					//  ContractModel.updateContract({
+					// 	address: contractAddress,
+					// },{
+					// 	compilerVersion: solc_version,
+					// 	sourceCode: sourse_code,
+					// 	abi: abicode,
+					// 	byteCode: bytecode_from_blockchain,
+					// });
+					let upsertDoc = {
+						updateOne: {
+							filter: {
+								address: contractAddress
+							},
+							update: {
 								compilerVersion: solc_version,
 								sourceCode: sourse_code,
 								abi: abicode,
 								byteCode: bytecode_from_blockchain
-							}
-						}
-					)
+							},
+							upsert: true,
+						},
+					};
+					ContractModel.bulkUpsert([upsertDoc]);
 					  responseStatus.push({
 						  "Error": 0,
 						  "data": data,
@@ -176,27 +185,31 @@ module.exports.verifier = async (settings, provider) => {
 			  else {
 				bytecode_from_blockchain = output;
 				if (bytecode_from_blockchain === bytecode_from_compiler) {
-					let jsonParseData = JSON.parse(data.contracts["file"][contract_name]['metadata'])
-					 let abicode = JSON.stringify(jsonParseData.output.abi)
-					let contractAddress=contract_address.replace(/^.{2}/g, 'xdc');
-					  ContractModel.updateContract(
-						{ address: contractAddress },
-						{
-							$set: {
-								address:contractAddress,
-								contractName: contract_name,
-								optimization: false,
-								createdOn: Date.now(),
-								modifiedOn: Date.now(),
-								isActive:  true ,
-								isDeleted:  false,
+
+					//  ContractModel.updateContract({
+					// 	address: contractAddress,
+					// },{
+					// 	compilerVersion: solc_version,
+					// 	sourceCode: sourse_code,
+					// 	abi: abicode,
+					// 	byteCode: bytecode_from_blockchain,
+					// });
+					let upsertDoc = {
+						updateOne: {
+							filter: {
+								address: contractAddress
+							},
+							update: {
 								compilerVersion: solc_version,
 								sourceCode: sourse_code,
 								abi: abicode,
 								byteCode: bytecode_from_blockchain
-							}
-						}
-					)
+							},
+							upsert: true,
+						},
+					};
+					ContractModel.bulkUpsert([upsertDoc]);
+
 					  responseStatus.push({
 						  "Error": 0,
 						  "data": data,
