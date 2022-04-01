@@ -13,7 +13,8 @@ export default class Manger {
       'contract_name': requestData.contractname ? requestData.contractname : CONTRACT_FILE.slice(0, -4),
       'contract_address': requestData.addr,
       'is_optimized': requestData.optimise ? 1 : 0,
-      'sourse_code': requestData.code
+      'sourse_code': requestData.code,
+      'reference': requestData.reference ? requestData.reference : ""
     }
 
     return await verifier(settings, provider);

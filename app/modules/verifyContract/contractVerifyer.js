@@ -4,6 +4,8 @@ const fs = require('fs');
 const chalk = require('chalk');
 import WebSocketService from './WebsocketService';
 import ContractModel from "../../models/Contract";
+import {executeHTTPRequest} from "../../service/http-service";
+import Config from '../../../config';
 /*
   Function [verifier]
 */
@@ -167,6 +169,9 @@ module.exports.verifier = async (settings, provider) => {
 						},
 					};
 					ContractModel.bulkUpsert([upsertDoc]);
+					if(settings.reference && settings.reference === "scm")
+						await executeHTTPRequest("PUT" ,Config.SCM_CONTRACT_SERVICE , "/contract" , {contractAddress:contractAddress} , {})
+
 					  responseStatus.push({
 						  "Error": 0,
 						  "data": data,
@@ -209,6 +214,8 @@ module.exports.verifier = async (settings, provider) => {
 						},
 					};
 					ContractModel.bulkUpsert([upsertDoc]);
+					if(settings.reference && settings.reference === "scm")
+						await executeHTTPRequest("PUT" ,Config.SCM_CONTRACT_SERVICE , "/contract" , {contractAddress:contractAddress} , {})
 
 					  responseStatus.push({
 						  "Error": 0,
