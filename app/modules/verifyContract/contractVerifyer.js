@@ -60,7 +60,7 @@ module.exports.verifier = async (settings, provider) => {
 					responseStatus.push({
 						"Error": 1,
 						"data": null,
-						"message": "Oops! there is an error, please try after some time.",
+						"message": "Please Enter Valid Data",
 					})
 				}
 		
