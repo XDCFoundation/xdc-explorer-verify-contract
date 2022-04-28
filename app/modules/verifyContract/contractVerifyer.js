@@ -81,7 +81,6 @@ module.exports.verifier = async (settings, provider) => {
 				}
 				try {  
 					output = JSON.parse(solc_specific.compile(JSON.stringify(input_json)),is_optimized);
-					console.log("output", output);
 					// single contract
 					if (typeof output.errors == 'undefined') { 
 						bytecode = output.contracts["file"][contract_name]['evm']['deployedBytecode']['object']
