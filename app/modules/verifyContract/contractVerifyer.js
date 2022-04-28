@@ -157,7 +157,7 @@ module.exports.verifier = async (settings, provider) => {
 					let upsertDoc = {
 						updateOne: {
 							filter: {
-								address: contractAddress
+								address: contractAddress.toLowerCase()
 							},
 							update: {
 								compilerVersion: solc_version,
@@ -170,7 +170,7 @@ module.exports.verifier = async (settings, provider) => {
 					};
 					ContractModel.bulkUpsert([upsertDoc]);
 					if(settings.reference && settings.reference === "scm")
-						await executeHTTPRequest("PUT" ,Config.SCM_CONTRACT_SERVICE , "/contract" , {contractAddress:contractAddress} , {})
+						await executeHTTPRequest("PUT" ,Config.SCM_CONTRACT_SERVICE , "/contract" , {contractAddress:contractAddress.toLowerCase()} , {})
 
 					  responseStatus.push({
 						  "Error": 0,
@@ -202,7 +202,7 @@ module.exports.verifier = async (settings, provider) => {
 					let upsertDoc = {
 						updateOne: {
 							filter: {
-								address: contractAddress
+								address: contractAddress.toLowerCase()
 							},
 							update: {
 								compilerVersion: solc_version,
@@ -215,7 +215,7 @@ module.exports.verifier = async (settings, provider) => {
 					};
 					ContractModel.bulkUpsert([upsertDoc]);
 					if(settings.reference && settings.reference === "scm")
-						await executeHTTPRequest("PUT" ,Config.SCM_CONTRACT_SERVICE , "/contract" , {contractAddress:contractAddress} , {})
+						await executeHTTPRequest("PUT" ,Config.SCM_CONTRACT_SERVICE , "/contract" , {contractAddress:contractAddress.toLowerCase()} , {})
 
 					  responseStatus.push({
 						  "Error": 0,
